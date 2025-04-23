@@ -30,7 +30,7 @@ public class EcouteurFichierMedecin {
             WatchKey key = watchService.take();
             
             for (WatchEvent<?> event : key.pollEvents()) {
-                if(even.context().toString().equals(filePath.getFileName().toString())){
+                if(event.context().toString().equals(filePath.getFileName().toString())){
                     System.out.println("ecouteur fichier : ficier modifie = true !");
                     Medecin_Agent.fichierModifierMedecin = true;
                 }

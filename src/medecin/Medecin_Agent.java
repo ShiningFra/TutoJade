@@ -9,7 +9,6 @@ import jade.core.behaviours.CyclicBehaviour;
 import jade.gui.GuiAgent;
 import jade.gui.GuiEvent;
 import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
 import jade.wrapper.ControllerException;
 
 /**
@@ -24,7 +23,7 @@ public class Medecin_Agent extends GuiAgent {
         @Override
         protected void setup(){
             gui=(Medecin_Container) getArguments()[0];
-            gui.setMedecin_agent(this);
+            gui.setMedecin_Agent(this);
             System.out.println("Initialisation de l'agent "+this.getAID().getName());
             
             addBehaviour (new CyclicBehaviour(){
@@ -61,4 +60,25 @@ public class Medecin_Agent extends GuiAgent {
         protected void onGuiEvent(GuiEvent guiEvent){
             throw new UnsupportedOperationException("Not supported yet.");
         }
+        
+        @Override
+    protected void takeDown() {
+        System.out.println("Destruction de l'agent");
+    }
+    @Override
+    protected void beforeMove() {
+        try {
+            System.out.println("Avant la migration ... du conteneur "+this.getContainerController().getContainerName());
+        } catch (ControllerException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void afterMove() {
+        try {
+            System.out.println("Après la migration ... le conteneur "+this.getContainerController().getContainerName());
+        } catch (ControllerException e) {
+            e.printStackTrace();
+        }
+    }
 }
