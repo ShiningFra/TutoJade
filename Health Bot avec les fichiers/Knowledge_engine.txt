@@ -1,0 +1,641 @@
+{
+    "organe": "",
+    "maladie": "\t-\tPaludisme\n",
+    "symptomes": ["céphalées", "douleurs musculaires", "fièvre", "frissons", "sensation de froid", "manque d'appétit"],
+    "mots_cles":{
+        "céphalées": ["céphalées", "maux de tête", "tête", "migraine", "céphalalgie", "cervicalgie"],
+        "douleurs musculaires": ["douleurs musculaires", "courbatures", "myalgies", "douleurs corporelles", "contractures musculaires", "douleurs aux muscles", "douleurs articulaires"],
+        "fièvre": ["fièvre", "température élevée", "hyperthermie", "pyrexie", "élévation de la température corporelle"],
+        "frissons": ["frissons", "frémissements", "tremblements", "chair de poule", "frissons corporels"],
+        "sensation de froid": ["sensation de froid", "sensation de frissons", "sensation de gel", "tremblements dus au froid", "chair de poule", "engourdissement"],
+        "manque d'appétit": ["manque d'appétit", "perte d'appétit", "anorexie", "diminution de l'appétit", "absence de faim"]
+    },
+    "solution": "\t-\tRepos au lit et éviter les efforts physiques intenses.\n\t-\tHydratation suffisante en buvant des liquides tels que de l'eau, des jus de fruits ou des boissons électrolytiques.\n\t-\tPrise d'antipyrétiques tels que le paracétamol pour réduire la fièvre et les douleurs.\n\t-\tPrescription de médicaments antipaludiques spécifiques selon les recommandations médicales.\n",
+    "prevention": "Pour prévenir le paludisme :\n\t-\tUtiliser des moustiquaires imprégnées d'insecticide pour dormir.\n\t-\tAppliquer des répulsifs anti-moustiques sur la peau exposée.\n\t-\tPorter des vêtements longs et légers pour réduire l'exposition aux piqûres de moustiques.\n\t-\tÉliminer les sources d'eau stagnante où les moustiques se reproduisent.\n\t-\tConsulter un professionnel de la santé pour des mesures préventives spécifiques avant de voyager dans des régions à risque de paludisme.\n"
+},end
+{
+    "organe": "",
+    "maladie": "\t-\tTuberculose\n",
+    "symptomes": ["toux persistante", "fièvre", "perte de poids", "fatigue", "sueurs nocturnes"],
+    "mots_cles":{
+        "toux persistante": ["toux persistante", "toux chronique", "toux prolongée", "toux persistant", "tousse", "tousser", "toussote", "toussement", "toust", "toussant"],
+        "fièvre": ["fièvre", "température élevée", "hyperthermie", "pyrexie", "fiévreux", "fiévreuse", "brûlant", "ardent", "fiévreusement"],
+        "perte de poids": ["perte de poids", "amaigrissement", "perte d'appétit", "perte de masse corporelle", "maigre", "maigrir", "perdre du poids", "amaigri", "allégé", "poids perdu"],
+        "fatigue": ["fatigue", "lassitude", "épuisement", "faiblesse", "cassé", "épuisé", "éreinté", "épuiser", "épuisant", "fatigant"],
+        "sueurs nocturnes": ["sueurs nocturnes", "transpiration excessive la nuit", "transpiration profuse pendant la nuit", "sueur nocturne", "suer la nuit", "suant", "transpirant", "humide"]
+    },
+    "solution": "Traitement antibiotique spécifique pendant une période prolongée, repos, alimentation équilibrée.",
+    "prevention": "Vaccination (BCG), éviter les contacts étroits avec des personnes atteintes, maintenir une bonne hygiène."
+},end
+{
+    "organe": "",
+    "maladie": "\t-\tGrippe\n",
+    "symptomes": ["fièvre", "frissons", "maux de tête", "douleurs musculaires", "fatigue", "congestion nasale"],
+    "mots_cles": {
+    "fièvre": ["fièvre", "température élevée", "fiévreux", "fiébrile", "hyperthermie", "brûlant", "sueurs", "chaleur corporelle"],
+    "frissons": ["frissons", "tremblements", "frissonnement", "frissonnant", "frileux", "tremblant", "chair de poule"],
+    "maux de tête": ["maux de tête", "céphalée", "migraine", "mal à la tête", "douleur lancinante", "pulsatile", "frontal", "temporal"],
+    "douleurs musculaires": ["douleurs musculaires", "courbatures", "myalgies", "douleurs corporelles", "contractures musculaires", "douleurs aux muscles", "douleurs articulaires"],
+    "fatigue": ["fatigue", "lassitude", "épuisement", "asthénie", "manque d'énergie", "abattement", "somnolence"],
+    "congestion nasale": ["congestion nasale", "nez bouché", "rhinite", "écoulement nasal", "sinus bloqués", "nez qui coule", "obstruction des voies nasales"]
+    },
+    "solution": "Repos, consommation de liquides, prise d'antipyrétiques, médicaments antigrippaux, si nécessaire.",
+    "prevention": "Vaccination annuelle, se laver les mains régulièrement, éviter les contacts étroits avec des personnes malades."
+},end
+{
+  "organe": "",
+  "maladie": "Diabète",
+  "symptomes": [
+    "soif excessive",
+    "mictions fréquentes",
+    "fatigue",
+    "perte de poids",
+    "vision floue",
+    "cicatrisation lente"
+  ],
+  "mots_cles": {
+    "soif excessive": [
+      "soif excessive",
+      "soif intense",
+      "besoin fréquent de boire",
+      "déshydratation",
+      "bouche sèche",
+      "forte envie de boire",
+      "sensation de dessèchement",
+      "besoin constant d'hydratation",
+      "grande soif",
+      "soif insatiable",
+      "aspiration à boire"
+    ],
+    "mictions fréquentes": [
+      "mictions fréquentes",
+      "besoin fréquent d'uriner",
+      "polyurie",
+      "uriner souvent",
+      "augmentation de la fréquence urinaire",
+      "besoin urgent d'uriner",
+      "émission d'urine fréquente",
+      "urination répétée",
+      "fréquence élevée des mictions"
+    ],
+    "fatigue": [
+      "fatigue",
+      "épuisement",
+      "manque d'énergie",
+      "lassitude",
+      "faiblesse",
+      "épuisement physique",
+      "fatigue extrême",
+      "manque de force",
+      "fatigue accablante",
+      "énergie réduite",
+      "épuisement intense"
+    ],
+    "perte de poids": [
+      "perte de poids",
+      "amaigrissement",
+      "perte de masse corporelle",
+      "maigreur",
+      "fonte musculaire",
+      "perte importante de poids",
+      "diminution de la masse musculaire",
+      "amaigrissement rapide",
+      "perte de poids significative",
+      "diminution de la corpulence",
+      "perte de masse importante"
+    ],
+    "vision floue": [
+      "vision floue",
+      "troubles de la vision",
+      "vision trouble",
+      "diminution de l'acuité visuelle",
+      "difficulté à voir clairement",
+      "vue brouillée",
+      "vision altérée",
+      "flou visuel",
+      "vision floutée",
+      "vision imprécise",
+      "vision indistincte"
+    ],
+    "cicatrisation lente": [
+      "cicatrisation lente",
+      "guérison lente des plaies",
+      "retard de cicatrisation",
+      "plaies qui tardent à guérir",
+      "cicatrices qui persistent",
+      "cicatrisation retardée",
+      "réparation tissulaire lente",
+      "guérison difficile",
+      "fermeture des plaies lente",
+      "processus de guérison prolongé",
+      "retard de consolidation"
+    ]
+  },
+  "solution": "Pour le diabète :\n- Adopter un régime alimentaire équilibré\n- Faire de l'exercice physique régulièrement\n- Prendre des médicaments hypoglycémiants ou de l'insuline selon les recommandations médicales.",
+  "prevention": "Pour prévenir le diabète :\n- Maintenir un poids santé\n- Adopter un mode de vie actif\n- Éviter le tabagisme et la consommation excessive d'alcool"
+},end
+
+{
+  "organe": "",
+  "maladie": "Hypertension artérielle",
+  "symptomes": [
+    "maux de tête",
+    "étourdissements",
+    "vision floue",
+    "fatigue",
+    "palpitations"
+  ],
+  "mots_cles": {
+    "maux de tête": [
+      "maux de tête",
+      "céphalées",
+      "douleurs dans la tête",
+      "migraines",
+      "pressions dans la tête",
+      "crâne douloureux",
+      "sensations de battements",
+      "tensions crâniennes",
+      "douleurs frontales",
+      "mal de crâne",
+      "mal à la tête",
+      "malaise dans la tête"
+    ],
+    "étourdissements": [
+      "étourdissements",
+      "vertiges",
+      "sensations de tête qui tourne",
+      "instabilité",
+      "déséquilibre",
+      "sensations de perte d'équilibre",
+      "tournements",
+      "sensations de vertige",
+      "sensations d'évanouissement",
+      "sensations de tête légère",
+      "sensations de désorientation",
+      "sensations de tête vide"
+    ],
+    "vision floue": [
+      "vision floue",
+      "troubles de la vision",
+      "vision trouble",
+      "vision imprécise",
+      "vision altérée",
+      "vue brouillée",
+      "vue floue",
+      "perception visuelle floue",
+      "difficultés à voir clairement",
+      "vue réduite",
+      "vue flottante",
+      "vue voilée"
+    ],
+    "fatigue": [
+      "fatigue",
+      "épuisement",
+      "manque d'énergie",
+      "lassitude",
+      "faiblesse",
+      "épuisement physique",
+      "fatigue excessive",
+      "manque de force",
+      "énergie réduite",
+      "fatigue accablante",
+      "coup de fatigue",
+      "épuisement général",
+      "perte d'énergie"
+    ],
+    "palpitations": [
+      "palpitations",
+      "battements cardiaques irréguliers",
+      "sensations de battements",
+      "rythme cardiaque rapide",
+      "sensations de cœur qui s'emballe",
+      "battements forts",
+      "sursauts cardiaques",
+      "palpitations cardiaques",
+      "tachycardie",
+      "cœur qui bat vite",
+      "cœur qui s'emballe",
+      "battements irréguliers"
+    ]
+  },
+  "solution": "Pour l'hypertension artérielle :\n- Modifier le régime alimentaire en réduisant la consommation de sel\n- Faire de l'exercice physique régulièrement\n- Prendre des médicaments antihypertenseurs selon les recommandations médicales.",
+  "prevention": "Pour prévenir l'hypertension artérielle :\n- Maintenir un poids santé\n- Limiter la consommation de sel\n- Pratiquer une activité physique régulière"
+},end
+
+{
+  "organe": "",
+  "maladie": "Bronchite",
+  "symptomes": [
+    "toux productive",
+    "essoufflement",
+    "douleur thoracique",
+    "fièvre légère",
+    "fatigue"
+  ],
+  "mots_cles": {
+    "toux productive": [
+      "toux productive",
+      "toux avec expectorations",
+      "tousse",
+      "toussote",
+      "expectore",
+      "toux grasse",
+      "toux qui fait cracher",
+      "toux qui dégage les voies respiratoires",
+      "tousser",
+      "cracher",
+      "expectorer",
+      "évacuer des sécrétions"
+    ],
+    "essoufflement": [
+      "essoufflement",
+      "difficulté respiratoire",
+      "souffle court",
+      "respiration difficile",
+      "halètement",
+      "manque d'air",
+      "respiration sifflante",
+      "respiration laborieuse",
+      "respirer avec difficulté",
+      "se sentir à bout de souffle",
+      "avoir du mal à respirer",
+      "être essoufflé",
+      "avoir une respiration saccadée"
+    ],
+    "douleur thoracique": [
+      "douleur thoracique",
+      "douleur à la poitrine",
+      "oppression thoracique",
+      "sensation de serrement dans la poitrine",
+      "douleur poitrinaire",
+      "douleur sternale",
+      "douleur sous les côtes",
+      "avoir mal au thorax",
+      "ressentir une gêne dans la poitrine",
+      "éprouver une douleur à la poitrine",
+      "souffrir d'une douleur thoracique"
+    ],
+    "fièvre légère": [
+      "fièvre légère",
+      "température corporelle légèrement élevée",
+      "léger pic de fièvre",
+      "température légèrement augmentée",
+      "léger état fébrile",
+      "fièvre modérée",
+      "avoir une légère fièvre",
+      "avoir une température légèrement élevée",
+      "avoir un léger état fébrile",
+      "être légèrement fiévreux"
+    ],
+    "fatigue": [
+      "fatigue",
+      "épuisement",
+      "manque d'énergie",
+      "lassitude",
+      "faiblesse",
+      "épuisement physique",
+      "fatigue excessive",
+      "manque de force",
+      "énergie réduite",
+      "fatigue accablante",
+      "coup de fatigue",
+      "épuisement général",
+      "perte d'énergie",
+      "se sentir fatigué",
+      "être épuisé",
+      "éprouver une grande fatigue",
+      "manquer d'énergie",
+      "ressentir une grande lassitude"
+    ]
+  },
+  "solution": "Pour la bronchite :\n- Repos\n- Consommation de liquides\n- Prise d'antitussifs\n- Inhalation de vapeur\n- Médicaments bronchodilatateurs si nécessaire.",
+  "prevention": "Pour prévenir la bronchite :\n- Éviter l'excès de fumée et de substances irritantes\n- Se laver fréquemment les mains pour prévenir les infections respiratoires\n- Éviter les contacts étroits avec des personnes atteintes d'infections respiratoires"
+},end
+
+{
+  "organe": "",
+  "maladie": "Arthrite",
+  "symptomes": [
+    "douleur articulaire",
+    "gonflement des articulations",
+    "raideur articulaire",
+    "difficulté à bouger les articulations",
+    "fatigue"
+  ],
+  "mots_cles": {
+    "douleur articulaire": [
+      "douleur articulaire",
+      "douleur dans les articulations",
+      "douleur aux articulations",
+      "douleur des articulations",
+      "douleur articulaires",
+      "douleur articulaires",
+      "douleurs des articulations",
+      "douleurs articulaires",
+      "sensation de douleur dans les articulations",
+      "sensation de douleur aux articulations",
+      "sensation de douleur des articulations",
+      "sensation de douleurs articulaires",
+      "avoir mal aux articulations",
+      "ressentir une douleur articulaire",
+      "éprouver une douleur dans les articulations"
+    ],
+    "gonflement des articulations": [
+      "gonflement des articulations",
+      "articulations enflées",
+      "articulation enflée",
+      "articulations qui gonflent",
+      "articulation qui enfle",
+      "avoir des articulations enflées",
+      "avoir une articulation enflée",
+      "présenter un gonflement des articulations",
+      "présenter une articulation enflée"
+    ],
+    "raideur articulaire": [
+      "raideur articulaire",
+      "articulations raides",
+      "articulation rigide",
+      "articulations qui se bloquent",
+      "articulation qui se fige",
+      "avoir des articulations raides",
+      "avoir une articulation rigide",
+      "éprouver une raideur articulaire",
+      "ressentir une articulation qui se bloque"
+    ],
+    "difficulté à bouger les articulations": [
+      "difficulté à bouger les articulations",
+      "articulations difficiles à mobiliser",
+      "articulations qui ne se déplacent pas bien",
+      "articulations qui sont limitées dans leurs mouvements",
+      "avoir du mal à bouger les articulations",
+      "rencontrer des difficultés à mobiliser les articulations",
+      "éprouver des problèmes de mobilité articulaire",
+      "ressentir une limitation des mouvements articulaires"
+    ],
+    "fatigue": [
+      "fatigue",
+      "épuisement",
+      "manque d'énergie",
+      "lassitude",
+      "faiblesse",
+      "épuisement physique",
+      "fatigue excessive",
+      "manque de force",
+      "énergie réduite",
+      "fatigue accablante",
+      "coup de fatigue",
+      "épuisement général",
+      "perte d'énergie",
+      "se sentir fatigué",
+      "être épuisé",
+      "éprouver une grande fatigue",
+      "manquer d'énergie",
+      "ressentir une grande lassitude"
+    ]
+  },
+  "solution": "Pour l'arthrite :\n- Médicaments anti-inflammatoires\n- Physiothérapie\n- Activités physiques douces et régulières\n- Chaleur ou froid localisé pour soulager la douleur et l'inflammation",
+  "prevention": "Pour prévenir l'arthrite :\n- Maintenir un poids santé\n- Faire de l'exercice physique régulièrement\n- Éviter les blessures articulaires\n- Éviter le tabagisme"
+},end
+
+{
+  "organe": "",
+  "maladie": "Migraine",
+  "symptomes": [
+    "maux de tête pulsatile",
+    "nausées",
+    "vomissements",
+    "sensibilité à la lumière",
+    "sensibilité au bruit"
+  ],
+  "mots_cles": {
+    "maux de tête pulsatile": [
+      "maux de tête pulsatile",
+      "pulsations douloureuses dans la tête",
+      "céphalée pulsatile",
+      "douleur pulsatile dans la tête",
+      "battements douloureux dans la tête",
+      "douleur qui pulse dans la tête",
+      "avoir mal à la tête de façon pulsatile",
+      "ressentir des pulsations douloureuses dans la tête"
+    ],
+    "nausées": [
+      "nausées",
+      "envie de vomir",
+      "malaise gastrique",
+      "sensation de malaise",
+      "avoir envie de se rendre",
+      "éprouver des nausées",
+      "ressentir une envie de vomir"
+    ],
+    "vomissements": [
+      "vomissements",
+      "rejets du contenu de l'estomac par la bouche",
+      "évacuation gastrique",
+      "expulser le contenu de l'estomac",
+      "se mettre à vomir",
+      "avoir des vomissements",
+      "présenter des rejets du contenu de l'estomac",
+      "faire des régurgitations",
+      "éprouver des épisodes de vomissements"
+    ],
+    "sensibilité à la lumière": [
+      "sensibilité à la lumière",
+      "photophobie",
+      "intolérance à la lumière",
+      "difficulté à supporter la lumière",
+      "être sensible à la lumière",
+      "avoir une sensibilité accrue à la lumière",
+      "éprouver une gêne face à la lumière",
+      "ressentir une intolérance à la lumière"
+    ],
+    "sensibilité au bruit": [
+      "sensibilité au bruit",
+      "phonophobie",
+      "intolérance au bruit",
+      "difficulté à supporter le bruit",
+      "être sensible au bruit",
+      "avoir une sensibilité accrue au bruit",
+      "éprouver une gêne face au bruit",
+      "ressentir une intolérance au bruit"
+    ]
+  },
+  "solution": "Pour la migraine :\n- Repos dans un endroit calme et sombre\n- Application de compresses froides ou chaudes\n- Prise de médicaments spécifiques contre la migraine selon les recommandations médicales\n- Éviter les déclencheurs connus de migraines",
+  "prevention": "Pour prévenir les migraines :\n- Éviter les déclencheurs connus\n- Gérer le stress\n- Maintenir une routine de sommeil régulière\n- Faire de l'exercice physique régulièrement"
+},end
+
+{
+  "organe": "Système immunitaire",
+  "maladie": "VIH/SIDA",
+  "symptomes": {
+    "Symptômes précoces": ["fièvre", "fatigue", "ganglions lymphatiques enflés", "maux de gorge", "éruptions cutanées", "perte de poids"],
+    "Symptômes avancés (SIDA)": ["infections opportunistes", "cancers", "perte de poids sévère", "diarrhée chronique", "fièvre prolongée"]
+  },
+  "mots_cles": {
+    "fièvre": ["fièvre", "température élevée", "hyperthermie", "pyrexie", "état fébrile", "avoir de la fièvre", "fiévreux", "fièvreux"],
+    "fatigue": ["fatigue", "lassitude", "épuisement", "coup de fatigue", "se sentir fatigué", "être épuisé", "épuisement physique", "fatigué mentalement"],
+    "ganglions lymphatiques enflés": ["ganglions lymphatiques enflés", "adénopathie", "ganglions gonflés", "ganglions enflés", "ganglions douloureux", "ganglions sensibles"],
+    "maux de gorge": ["maux de gorge", "douleurs à la gorge", "irritation de la gorge", "sensation de brûlure dans la gorge", "gorge irritée", "gorge douloureuse"],
+    "éruptions cutanées": ["éruptions cutanées", "rash cutané", "éruption cutanée", "éruptions sur la peau", "irritation de la peau", "démangeaisons cutanées"],
+    "perte de poids": ["perte de poids", "amaigrissement", "perdre du poids", "maigrir", "s'affiner", "perte d'appétit", "perte de masse corporelle"],
+    "infections opportunistes": ["infections opportunistes", "infections secondaires", "infections associées", "infections liées", "infections opportunes", "infections bactériennes", "infections fongiques"],
+    "cancers": ["cancers", "tumeurs malignes", "néoplasmes", "tumeurs cancéreuses", "croissance tumorale", "tumeurs métastatiques"],
+    "diarrhée chronique": ["diarrhée chronique", "diarrhée persistante", "diarrhée récurrente", "diarrhée fréquente", "selles liquides", "troubles digestifs"],
+    "fièvre prolongée": ["fièvre prolongée", "fièvre persistante", "fièvre prolongée dans le temps", "fièvre qui dure longtemps", "fièvre continue", "fièvre récurrente"]
+  },
+  "solution": "\t-\tTraitement antirétroviral (ARV) pour ralentir la progression du VIH et renforcer le système immunitaire.\n\t-\tPrise en charge des infections opportunistes et des complications associées.\n",
+  "prevention": "Pour prévenir le VIH/SIDA :\n\t-\tUtilisation de préservatifs lors des rapports sexuels.\n\t-\tDépistage régulier du VIH.\n\t-\tAccès à des programmes de prévention de la transmission de la mère à l'enfant.\n"
+},end
+{
+    "organe": "Système digestif",
+    "maladie": "Choléra",
+    "symptomes": ["Diarrhée aqueuse sévère", "Vomissements", "Déshydratation rapide", "Crampes abdominales"],
+    "mots_cles": {
+        "Diarrhée aqueuse": [
+            "Diarrhée aqueuse",
+            "diarrhée liquide",
+            "selles liquides",
+            "diarrhée abondante",
+            "diarrhée profuse",
+            "selles molles",
+            "selles fréquentes",
+            "selles non formées"
+        ],
+        "Vomissements": [
+            "Vomissements",
+            "rejets gastriques",
+            "nausées",
+            "vomir",
+            "vomissement en jet",
+            "vomissement répété",
+            "vomissement bilieux",
+            "vomissement persistant"
+        ],
+        "Déshydratation": [
+            "Déshydratation",
+            "perte d'eau",
+            "manque d'hydratation",
+            "déficit hydrique",
+            "déshydraté",
+            "soif intense",
+            "bouche sèche",
+            "peau sèche"
+        ],
+        "Crampes abdominales": [
+            "Crampes abdominales",
+            "douleurs abdominales",
+            "coliques",
+            "spasmes intestinaux",
+            "douleurs ventrales",
+            "douleurs du ventre",
+            "sensation de serrement",
+            "inconfort abdominal"
+        ]
+    },
+    "solution": "\t-\tRéhydratation orale ou intraveineuse.\n\t-\tAntibiotiques pour réduire la durée de la maladie.\n",
+    "prevention": "Pour prévenir le choléra :\n\t-\tAccès à de l'eau potable et à des installations sanitaires adéquates.\n\t-\tBonne hygiène des mains.\n\t-\tVaccination contre le choléra si disponible.\n"
+},end
+{
+    "organe": "Système immunitaire",
+    "maladie": "Fièvre jaune",
+    "symptomes": ["fièvre", "maux de tête", "douleurs musculaires", "nausées", "vomissements", "jaunisse"],
+    "mots_cles": {
+        "fièvre": [
+            "fièvre",
+            "température élevée",
+            "hyperthermie",
+            "pyrexie",
+            "forte fièvre",
+            "fièvre persistante",
+            "fièvre récurrente"
+        ],
+        "maux de tête": [
+            "maux de tête",
+            "céphalées",
+            "douleur à la tête",
+            "mal de crâne",
+            "migraine"
+        ],
+        "douleurs musculaires": [
+            "douleurs musculaires",
+            "courbatures",
+            "myalgies",
+            "douleurs corporelles",
+            "contractures musculaires",
+            "douleurs articulaires",
+            "raideur musculaire"
+        ],
+        "nausées": [
+            "nausées",
+            "malaise gastrique",
+            "sensation de malaise",
+            "envie de vomir"
+        ],
+        "vomissements": [
+            "vomissements",
+            "vomir",
+            "rejets gastriques",
+            "vomissement en jet",
+            "vomissement répété"
+        ],
+        "jaunisse": [
+            "jaunisse",
+            "ictère",
+            "peau jaune",
+            "yeux jaunes",
+            "coloration jaune de la peau"
+        ]
+    },
+    "solution": "\t-\tTraitement de soutien pour soulager les symptômes.\n\t-\tRepos au lit et hydratation adéquate.\n\t-\tDans les cas graves, hospitalisation pour une surveillance étroite et des soins médicaux spécialisés.\n\t-\tVaccination préventive contre la fièvre jaune.\n",
+    "prevention": "Pour prévenir la fièvre jaune :\n\t-\tVaccination contre la fièvre jaune avant de voyager dans des régions à risque.\n\t-\tUtilisation de répulsifs anti-moustiques et de vêtements protecteurs pour réduire les piqûres de moustiques.\n\t-\tÉlimination des habitats de reproduction des moustiques.\n"
+},end
+{
+    "organe": "Foie",
+    "maladie": "Hépatite virale",
+    "symptomes": {
+        "Symptômes communs": ["fatigue", "jaunisse", "douleurs abdominales", "nausées", "vomissements", "perte d'appétit"],
+        "Symptômes spécifiques": ["urines foncées", "selles décolorées", "démangeaisons cutanées"]
+    },
+    "mots_cles": {
+        "fatigue": ["fatigue", "épuisement", "lassitude", "faiblesse", "manque d'énergie"],
+        "jaunisse": ["jaunisse", "ictère", "peau jaune", "yeux jaunes", "coloration jaune de la peau"],
+        "douleurs abdominales": ["douleurs abdominales", "douleurs dans le ventre", "maux d'estomac"],
+        "nausées": ["nausées", "malaise gastrique", "sensation de malaise", "envie de vomir"],
+        "vomissements": ["vomissements", "vomir", "rejets gastriques", "vomissement en jet", "vomissement répété"],
+        "perte d'appétit": ["perte d'appétit", "anorexie", "diminution de l'appétit", "manque d'appétit"],
+        "urines foncées": ["urines foncées", "urines de couleur foncée", "urines brunâtres"],
+        "selles décolorées": ["selles décolorées", "selles pâles", "selles claires"],
+        "démangeaisons cutanées": ["démangeaisons cutanées", "prurit", "irritation de la peau"]
+    },
+    "solution": "\t-\tRepos au lit et hydratation adéquate.\n\t-\tRégime alimentaire équilibré pour soutenir la fonction hépatique.\n\t-\tTraitement spécifique selon le type d'hépatite.\n\t-\tDans certains cas graves, traitement antiviral peut être nécessaire.\n",
+    "prevention": "Pour prévenir l'hépatite virale :\n\t-\tVaccination contre les types d'hépatite spécifiques disponibles (par exemple, l'hépatite A et l'hépatite B).\n\t-\tPratiquer une bonne hygiène des mains et éviter le partage de seringues ou d'aiguilles.\n\t-\tUtilisation de préservatifs lors des rapports sexuels pour réduire le risque de transmission sexuelle.\n"
+},end
+{
+    "organe": "Système digestif",
+    "maladie": "Fièvre typhoïde",
+    "symptomes": ["fièvre élevée", "maux de tête", "fatigue", "perte d'appétit", "constipation ou diarrhée", "éruption cutanée"],
+    "mots_cles": {
+        "fièvre élevée": ["fièvre élevée", "hyperthermie", "pyrexie", "forte fièvre", "température élevée", "chaleur corporelle", "brûlant"],
+        "maux de tête": ["maux de tête", "céphalées", "douleurs dans la tête", "migraine", "céphalalgie"],
+        "fatigue": ["fatigue", "épuisement", "lassitude", "faiblesse", "manque d'énergie", "coup de fatigue", "épuisement physique"],
+        "perte d'appétit": ["perte d'appétit", "anorexie", "diminution de l'appétit", "manque d'appétit", "absence de faim", "désintérêt alimentaire"],
+        "constipation ou diarrhée": ["constipation", "diarrhée", "troubles intestinaux", "problèmes de selles", "rétention des selles", "selles liquides", "dysfonctionnement intestinal"],
+        "éruption cutanée": ["éruption cutanée", "rash cutané", "lésions cutanées", "irritation de la peau", "éruptions cutanées", "rougeurs sur la peau"]
+    },
+    "solution": "\t-\tTraitement antibiotique pour éliminer l'infection bactérienne responsable de la fièvre typhoïde.\n\t-\tRepos au lit et hydratation adéquate.\n\t-\tRégime alimentaire léger et équilibré.\n\t-\tVaccination préventive contre la fièvre typhoïde.\n",
+    "prevention": "Pour prévenir la fièvre typhoïde :\n\t-\tVaccination préventive contre la fièvre typhoïde.\n\t-\tPratiquer une bonne hygiène des mains et éviter la consommation d'eau ou d'aliments contaminés.\n\t-\tSuivre des mesures d'hygiène adéquates lors de la préparation des aliments.\n"
+},end
+{
+    "organe": "Système digestif",
+    "maladie": "Diarrhée Infectieuse",
+    "symptomes": ["selles liquides fréquentes", "douleurs abdominales", "nausées", "vomissements", "fièvre", "déshydratation"],
+    "mots_cles": {
+        "selles liquides fréquentes": ["selles liquides fréquentes", "diarrhée", "selles molles", "selles aqueuses", "selles non formées", "diarrhée aiguë"],
+        "douleurs abdominales": ["douleurs abdominales", "douleurs dans le ventre", "crampes abdominales", "inconfort abdominal", "douleurs digestives"],
+        "nausées": ["nausées", "malaise gastrique", "envie de vomir", "sensation de malaise", "dégoût alimentaire"],
+        "vomissements": ["vomissements", "rejets", "nausées", "évacuation gastrique", "vomissement régulier"],
+        "fièvre": ["fièvre", "température élevée", "hyperthermie", "pyrexie", "chaleur corporelle", "brûlant"],
+        "déshydratation": ["déshydratation", "perte de liquides", "manque de fluides", "déséquilibre hydrique", "déficit en eau"]
+    },
+    "solution": "Le traitement de la diarrhée infectieuse vise à soulager les symptômes et à prévenir la déshydratation. Il peut inclure :\n\t-\tRepos au lit et éviter les aliments difficiles à digérer.\n\t-\tHydratation suffisante en buvant des liquides contenant des électrolytes.\n\t-\tPrise de médicaments antidiarrhéiques selon les recommandations médicales.\n\t-\tPrise en charge des symptômes tels que la fièvre et les douleurs abdominales avec des médicaments appropriés.\n\t-\tSuivi médical régulier pour évaluer la progression de la maladie et ajuster le traitement si nécessaire.\n",
+    "prevention": "Pour prévenir la diarrhée infectieuse :\n\t-\tPratiquer une bonne hygiène des mains et éviter la consommation d'aliments et d'eau contaminés.\n\t-\tÉviter les aliments crus ou mal cuits.\n\t-\tBoire de l'eau potable ou traitée et éviter les glaçons d'origine douteuse.\n\t-\tSe faire vacciner contre certaines causes courantes de diarrhée, comme le rotavirus.\n"
+},end

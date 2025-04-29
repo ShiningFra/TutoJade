@@ -1,144 +1,137 @@
 package receptionniste;
 
-import jade.core.AID;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import jade.gui.GuiEvent;
-import jade.lang.acl.ACLMessage;
-import jade.util.ExtendedProperties;
-import jade.util.leap.Properties;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
-import jade.wrapper.StaleProxyException;
 
-public class Receptionniste_Container extends Application {
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.Arrays;
+
+public class Receptionniste_Container {
+    private Receptionniste_Agent receptionnisteAgent;
+
+    public void setReceptionnisteAgent(Receptionniste_Agent agent) {
+        this.receptionnisteAgent = agent;
+    }
+
     public Receptionniste_Agent getReceptionnisteAgent() {
         return receptionnisteAgent;
     }
 
-    public void setReceptionnisteAgent(Receptionniste_Agent receptionnisteAgent) {
-        this.receptionnisteAgent = receptionnisteAgent;
-    }
+    private JTable tableView1, tableView2;
+    private DefaultTableModel model1, model2;
+    private JButton buttonAccepte;
 
-    private Receptionniste_Agent receptionnisteAgent;
-
-    public void startContainer() {
-        try {
-            Runtime runtime = Runtime.instance();
-            Profile profile = new ProfileImpl(false);
-            profile.setParameter(profile.MAIN_HOST, "localhost");
-            AgentContainer Receptionniste_container = runtime.createAgentContainer(profile);
-            AgentController Receptionniste_agentController = Receptionniste_container.createNewAgent("Receptionniste_Agent", "receptionniste.Receptionniste_Agent", new Object[]{});
-            Receptionniste_agentController.start();
-        } catch (ControllerException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void main (String[] args) {
-        launch(Receptionniste_Container.class);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
+    public Receptionniste_Container() {
         startContainer();
+        SwingUtilities.invokeLater(this::createAndShowGUI);
+    }
 
-        TableView<User> tableView1;
-        TableView<User> tableView2;
-        ObservableList<User> user1;
-        ObservableList<User> user2;
+    public static void main(String[] args) {
+        new Receptionniste_Container();
+    }
 
-        TableColumn<User,Integer> numeroCol1 = new TableColumn<User,Integer>("Numéro");
-        TableColumn<User,Integer> nomCol1 = new TableColumn<User,Integer>("Nom");
-        TableColumn<User,Integer> ageCol1 = new TableColumn<User,Integer>("Âge");
-        TableColumn<User,Integer> sexeCol1 = new TableColumn<User,Integer>("Sexe");
+    private void createAndShowGUI() {
+        JFrame frame = new JFrame("RECEPTION");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420, 650);
+        frame.setLocationRelativeTo(null);
 
-        numeroCol1.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        nomCol1.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        ageCol1.setCellValueFactory(new PropertyValueFactory<>("age"));
-        sexeCol1.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+        // Modèles et Tableaux
+        String[] cols1 = {"Numéro", "Nom", "Age", "Sexe"};
+        model1 = new DefaultTableModel(cols1, 0) {
+            @Override public boolean isCellEditable(int row, int col) { return false; }
+        };
+        tableView1 = new JTable(model1);
 
-        TableColumn<User,Integer> numeroCol2 = new TableColumn<User,Integer>("Numéro");
-        TableColumn<User,Integer> nomCol2 = new TableColumn<User,Integer>("Nom");
-        TableColumn<User,Integer> ageCol2 = new TableColumn<User,Integer>("Âge");
-        TableColumn<User,Integer> sexeCol2 = new TableColumn<User,Integer>("Sexe");
-        TableColumn<User,Integer> status= new TableColumn<User,Integer>("Statut");
+        String[] cols2 = {"Numéro", "Nom", "Age", "Sexe", "Statut"};
+        model2 = new DefaultTableModel(cols2, 0) {
+            @Override public boolean isCellEditable(int row, int col) { return false; }
+        };
+        tableView2 = new JTable(model2);
 
-        numeroCol2.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        nomCol2.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        ageCol2.setCellValueFactory(new PropertyValueFactory<>("age"));
-        sexeCol2.setCellValueFactory(new PropertyValueFactory<>("sexe"));
-        status.setCellValueFactory(new PropertyValueFactory<>("statut"));
+        // Données de démonstration
+        Object[][] sample = {
+            {1, "Lea", 20, "F"},
+            {2, "Line", 21, "F"},
+            {3, "Nassair", 22, "M"}
+        };
+        for (Object[] row : sample) {
+            model1.addRow(row);
+        }
 
-        tableView1 = new TableView<>();
-        boolean addAll;
-        addAll = tableView1.getColumns().addAll(numeroCol1,nomCol1,ageCol1,sexeCol1);
-        tableView1.setPrefWidth(400);
+        JScrollPane scroll1 = new JScrollPane(tableView1);
+        scroll1.setPreferredSize(new Dimension(380, 150));
+        JScrollPane scroll2 = new JScrollPane(tableView2);
+        scroll2.setPreferredSize(new Dimension(380, 150));
 
-        tableView2 = new TableView<>();
-        boolean addAll1;
-        addAll1 = tableView2.getColumns().addAll(numeroCol2,nomCol2,ageCol2,sexeCol2);
-        tableView2.setPrefWidth(400);
+        // Bouton d'acceptation
+        buttonAccepte = new JButton("Accepté");
 
-        user1 = FXCollections.observableArrayList(new User(1, "Lea", 20, "F"),
-                new User(21,"Line", 21, "F"),
-                new User(3, "Nassair", 22, "M"));
-        user2 = FXCollections.observableArrayList();
+        // Layout principal
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        tableView1.setItems(user1);
-        tableView2.setItems(user2);
+        mainPanel.add(new JLabel("DEMANDE DE CONSULTATION"));
+        mainPanel.add(Box.createVerticalStrut(5));
+        mainPanel.add(scroll1);
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(buttonAccepte);
+        mainPanel.add(Box.createVerticalStrut(10));
+        mainPanel.add(new JLabel("ETAT DE CONSULTATION"));
+        mainPanel.add(Box.createVerticalStrut(5));
+        mainPanel.add(scroll2);
 
-        Label label1 = new Label("DEMANDE DE CONSULTAITON");
-        Label label2 = new Label("ETAT DE CONSULTATION");
+        // Gestionnaire d'événements
+        buttonAccepte.addActionListener(e -> {
+            int row = tableView1.getSelectedRow();
+            if (row != -1) {
+                Object[] rowData = new Object[4];
+                for (int i = 0; i < 4; i++) {
+                    rowData[i] = model1.getValueAt(row, i);
+                }
+                model1.removeRow(row);
+                Object[] rowData2 = Arrays.copyOf(rowData, 5);
+                rowData2[4] = "En attente";
+                model2.addRow(rowData2);
 
-        Button buttonAccepte = new Button("Accepté");
-        VBox vBox = new VBox();
-        vBox.setSpacing(20);
-        vBox.getChildren().addAll(
-                new HBox(label1),
-                new HBox(tableView1),
-                new HBox(buttonAccepte),
-                new HBox(label2),
-                new HBox(tableView2)
-        );
-
-        Scene scene = new Scene(vBox, 400, 600);
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("RECEPTION");
-        primaryStage.show();
-
-        buttonAccepte.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                User selectedUser = tableView1.getSelectionModel().getSelectedItem();
-                if (selectedUser!=null){
-                    tableView1.getItems().remove(selectedUser);
-                    selectedUser.setStatus("En attente");
-                    user2.add(selectedUser);
-                    tableView2.setItems(user2);
-                    ACLMessage aclMessage = new ACLMessage(ACLMessage.CONFIRM);
-                    aclMessage.setContent("Votre consultation a été acceptee");
-                    aclMessage.addReceiver(new AID("Patient_Agent", AID.ISLOCALNAME));
-                    receptionnisteAgent.send(aclMessage);
+                // Envoi d'un événement JADE
+                GuiEvent guiEvent = new GuiEvent(this, 1);
+                guiEvent.addParameter("Consultation acceptée pour : " + rowData[1]);
+                if (receptionnisteAgent != null) {
+                    receptionnisteAgent.onGuiEvent(guiEvent);
                 }
             }
         });
+
+        frame.getContentPane().add(mainPanel);
+        frame.setVisible(true);
+    }
+
+    private void startContainer() {
+        try {
+            Runtime runtime = Runtime.instance();
+            Profile profile = new ProfileImpl(false);
+            profile.setParameter(Profile.MAIN_HOST, "localhost");
+            AgentContainer container = runtime.createAgentContainer(profile);
+            AgentController controller = container.createNewAgent(
+                "Receptionniste_Agent",
+                "receptionniste.Receptionniste_Agent",
+                new Object[]{this}
+            );
+            controller.start();
+        } catch (ControllerException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                "Erreur démarrage container JADE: " + e.getMessage(),
+                "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -1,10 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package medecin;
 
-import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,34 +15,49 @@ import java.nio.file.WatchService;
 
 /**
  *
- * @author Roddier
+ * @author dell
  */
 public class EcouteurFichierMedecin {
+    
+  
     public static void main(String[] args) throws Exception {
-        Path filePath = Paths.get("D:\\Workspace\\cabinetmedical"+"\\special\\send_by_doctor_expert.txt");
+        // Obtenez le chemin complet du fichier que vous souhaitez surveiller
+        Path filePath = Paths.get("C:\\Users\\dell\\Desktop\\semestre 2 4gi\\Systeme Expert et systeme multi agent\\SMA\\GESTION_CABINET_MEDICAL_FINAL\\Health Bot avec les fichiers\\send_by_doctor_expert.txt");
+        
+        
+        // Créez un objet WatchService
         WatchService watchService = FileSystems.getDefault().newWatchService();
         
+        // Enregistrez le chemin du fichier auprès du WatchService pour surveiller les modifications
         filePath.getParent().register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
         
-        System.out.println("Surveillance du fichier : "+ filePath);
+        System.out.println("Surveillance du fichier : " + filePath);
         
+        // Boucle infinie pour attendre les événements de modification du fichier
         while (true) {
+            // Récupérez le prochain événement de modification du WatchService
             WatchKey key = watchService.take();
             
+            // Parcourez les événements associés à la clé
             for (WatchEvent<?> event : key.pollEvents()) {
-                if(event.context().toString().equals(filePath.getFileName().toString())){
-                    System.out.println("ecouteur fichier : ficier modifie = true !");
-                    Medecin_Agent.fichierModifierMedecin = true;
+                // Vérifiez si l'événement est lié à la modification du fichier surveillé
+                if (event.context().toString().equals(filePath.getFileName().toString())) {
+                    System.out.println("ecouteur fichier fichier modifier = true !");
+                    Medecin_Agent.fichierModifierMedecin=true;
                 }
             }
             
+            // Réinitialisez la clé pour recevoir de nouveaux événements
             boolean valid = key.reset();
             
-            if(!valid) {
+            // Sortez de la boucle si la clé n'est plus valide
+            if (!valid) {
                 break;
             }
         }
         
+        // Fermez le WatchService
         watchService.close();
     }
+    
 }

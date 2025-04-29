@@ -1,0 +1,8 @@
+{'request': Potientielle maladie: 
+FiÃ¨vre typhoÃ¯de
+ Cette maladie produit généralement d'autres symptômes. Pour nous rassurer que vous souffrez effectivement de cette maladie, nous avons besoin de savoir si vous notez simultanément les symptômes suivants (repondez par oui ou non si c'est le cas)?:
+ 	 -	Ã©ruption cutanÃ©e,
+ 	 -	fatigue,
+ 	 -	perte d'appÃ©tit,
+ 	 -	fiÃ¨vre Ã©levÃ©e,
+ 	 -	constipation ou diarrhÃ©e,}
