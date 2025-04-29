@@ -1,274 +1,163 @@
 from experta import *
 import json
 import time
-import re
 import os
+import re
 
-# Définition de l'adresse IP et du port du dzeestinataire
+# === PARAMÈTRES ===
 HOST = '127.0.0.1'
-PORT = 5040  
-s=5
-# Ouvrir le fichier .txt
-with open('./Knowledge_engine.txt', 'r') as file:
-    content = file.read()
+PORT = 5040
+SLEEP_TIME = 5
+KNOWLEDGE_FILE = './Knowledge_engine.txt'
+SEND_FILE = 'send_by_doctor_expert.txt'
+RECEIVE_FILE = 'send_by_patient.txt'
 
-# Suppression des caractères de fin de ligne et de la balise 'end'
-content = re.sub(r'(\n|end)', '', content)
+# === OUTILS GÉNÉRAUX ===
 
-# Conversion du contenu en une liste de dictionnaires
-list_causes_effets = eval(content)
-
-def lire_fichier_texte(nom_fichier):
-    with open(nom_fichier, 'r') as fichier:
-        contenu = fichier.read()
-    return contenu
-
-def convertir_en_json(contenu_texte):
+def safe_load_knowledge(file_path):
+    """Lecture sécurisée du fichier de connaissance"""
     try:
-        structure_donnees = json.loads(contenu_texte)
-        json_data = json.dumps(structure_donnees, indent=4)
-        return json_data
-    except json.JSONDecodeError as e:
-        print("Erreur lors de la conversion en JSON :", e)
+        with open(file_path, 'r') as file:
+            content = file.read()
+        content = re.sub(r'(\n|end)', '', content)
+        return eval(content)  # 🔥 À remplacer par du JSON dans le futur pour plus de sécurité
+    except Exception as e:
+        print(f"Erreur de chargement de la base de connaissance: {e}")
+        return []
+
+def read_file(filepath):
+    """Lecture simple de fichier texte"""
+    try:
+        with open(filepath, 'r') as f:
+            return f.read()
+    except Exception as e:
+        print(f"Erreur de lecture fichier : {e}")
         return None
 
-def verifier_modification_fichier(nom_fichier, date_precedente):
-    # Récupérer la date de dernière modification du fichier
+def write_file(filepath, data):
+    """Écriture sécurisée dans un fichier texte"""
     try:
-        with open(nom_fichier,"r+") as send_by_patient:
-            date_modification = os.path.getmtime(nom_fichier)
-    except (IOError, PermissionError, FileNotFoundError) as e:
-        print("Erreur lors de la récupération de la dernière date de modification du fichier :", e)
-        return False    
-    
-        # Comparer la date de dernière modification actuelle avec la date précédente
-    if date_modification > date_precedente:
-        #print("Le fichier a été modifié. Date de dernière modification : ", date_modification_formattee)
-        print("date_modification: ")
-        print(date_modification)
-        print("date_precedente")
-        print(date_precedente)
-        print("true")
-        return True
-    else:
-        #print("Le fichier n'a pas été modifié.")
+        with open(filepath, 'w') as f:
+            f.write(data)
+            f.flush()
+        time.sleep(SLEEP_TIME)
+    except Exception as e:
+        print(f"Erreur d'écriture fichier : {e}")
+
+def file_modified(filepath, last_timestamp):
+    """Vérifie si un fichier a été modifié"""
+    try:
+        return os.path.getmtime(filepath) > last_timestamp
+    except Exception:
         return False
 
-class Cause(Fact):
-    pass
+# === FACTS ===
 
-class Effet(Fact):
-    pass
+class Cause(Fact): pass
+class Effet(Fact): pass
+class Potential_cause(Fact): pass
+class Launch_find_causes(Fact): pass
+class liste_Effets(Fact): pass
+class Launch(Fact): pass
 
-class Potential_cause(Fact):
-    pass
+# === BASE DE CONNAISSANCE ===
 
-class Launch_find_causes(Fact):
-    pass
+class KnowledgeEngineExpert(base_connaissances):
 
-class liste_Effets(Fact):
-    pass
-#ici, effets implique causes, causes implique solutions
-class Launch(Fact):
-    pass
-
-class base_connaissances(KnowledgeEngine):
     def __init__(self):
         super().__init__()
         self.last_updated_date = None
+        self.list_causes_effets = safe_load_knowledge(KNOWLEDGE_FILE)
+
     @DefFacts()
     def _initial_action(self):
-       yield Fact(action="greet")
-    
+        yield Fact(action="greet")
 
-    def send_and_receive(self, message):
-        data = "{'request': "+message+",}"
+    def send_and_wait_response(self, message):
+        """Envoie une requête et attend une réponse du fichier"""
+        payload = json.dumps({"request": message})
+        write_file(SEND_FILE, payload)
 
-        try:
-            with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-                send_by_doctor_expert.write(data)
-                send_by_doctor_expert.flush()
-                time.sleep(s)
-        except (IOError, PermissionError, FileNotFoundError) as e:
-            print("Erreur lors de l'écriture dans le fichier :", e)
-
-        # Attente de la réponse
         response = None
         while response is None:
-            # Réception de la réponse
-            if self.last_updated_date == None :
-                self.last_updated_date = os.path.getmtime("send_by_patient.txt")
+            if self.last_updated_date is None:
+                self.last_updated_date = os.path.getmtime(RECEIVE_FILE)
 
-            if verifier_modification_fichier("send_by_patient.txt", self.last_updated_date):
-                self.last_updated_date = os.path.getmtime("send_by_patient.txt")
-                # Lire le contenu du fichier texte
-                contenu_texte = lire_fichier_texte("send_by_patient.txt")
-                dict_response = eval(contenu_texte)#cette ligne génère une erreur lorsqu'on a une ligne vide dans le fichier
-                # Vérification si la réponse est présente dans les données reçues
-                if 'response' in dict_response:
-                    response = dict_response['response']
-                    print(response)
-                if 'pb' in dict_response:
-                    response = dict_response['pb']
-                    print(response)
-            else:
-                response
-
+            if file_modified(RECEIVE_FILE, self.last_updated_date):
+                self.last_updated_date = os.path.getmtime(RECEIVE_FILE)
+                content = read_file(RECEIVE_FILE)
+                if content:
+                    try:
+                        response_data = json.loads(content)
+                        response = response_data.get('response') or response_data.get('pb')
+                        print(f"Réponse reçue : {response}")
+                    except json.JSONDecodeError:
+                        print("Erreur de décodage JSON. Ignoré.")
+            time.sleep(1)
         return response
+
     @Rule(Fact(action="greet"))
     def greetings(self):
-        problem=self.send_and_receive("Décrivez les symptômes de votre maladie")
-        print("problem", problem)
-        if(problem!="refresh"):
+        problem = self.send_and_wait_response("Décrivez les symptômes de votre maladie")
+        if problem and problem != "refresh":
             self.declare(Launch(action="launch", pb=problem))
 
     @Rule(Launch(action="launch", pb=MATCH.pb))
     def ask_effect(self, pb):
-        #pb=input("Décrivez votre problème: ")
-        pb1 = pb.lower()
-        effets=""#effets doit contenir tous les effets recupérés dans list_causes_effets associés aux mots clés présents dans la variable pb
-        for elt_list_causes_effets in list_causes_effets:
-            for effet,mots_cles_effet in elt_list_causes_effets["mots_cles"].items():
-                for mot_cle in mots_cles_effet:
-                    if mot_cle in pb1:
-                        effets+=effet+","
-                        break
-        effets = effets.split(",")
-        effets = effets[:-1]
-        if(len(effets)!=0):
-            self.declare(liste_Effets(effets=effets))
+        """Détecte les effets liés aux mots-clés du problème"""
+        detected_effects = []
+        pb_lower = pb.lower()
+
+        for cause_effet in self.list_causes_effets:
+            for effet, mots_cles in cause_effet.get("mots_cles", {}).items():
+                if any(mot in pb_lower for mot in mots_cles):
+                    detected_effects.append(effet)
+
+        if detected_effects:
+            self.declare(liste_Effets(effets=detected_effects))
         else:
-            data = "{'potential_cause': 'Nous sommes désolé mais nous ne pouvons résoudre votre problème',}"
-            try:
-                with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-                    send_by_doctor_expert.write(data)
-                    send_by_doctor_expert.flush()
-                    time.sleep(s)
-            except (IOError, PermissionError, FileNotFoundError) as e:
-                print("Erreur lors de l'écriture dans le fichier :", e)
-    
+            error_message = json.dumps({"potential_cause": "Nous sommes désolés, nous ne pouvons résoudre votre problème."})
+            write_file(SEND_FILE, error_message)
+
     @Rule(liste_Effets(effets=MATCH.effets))
-    def  generation_Effets(self,effets):
-        for i in range(len(effets)):
-            self.declare(Effet(effet=effets[i]))
+    def generation_Effets(self, effets):
+        for effet in effets:
+            self.declare(Effet(effet=effet))
         self.declare(Launch_find_causes(action="go"))
-    
-    @Rule(Potential_cause(position_cause_in_list_causes_effets=MATCH.position_cause_in_list_causes_effets, list_effets=MATCH.list_effets))
-    #pour lancer le potentiel cause, il faudrait que j'ai également reçu un fait de type MessagePotential qui sera envoyé à partir de l'interface
-    #es ce que le premier potential cause va attendre le premier MessagePotential avant de lancer la règle ci
-    #et de façon générale de i eme potential cause?
-    def verification(self,position_cause_in_list_causes_effets, list_effets):
-        list_effets_str=""
-        for i in range(len(list_effets)):
-            if i==0:
-                list_effets_str+="\t -\t"+list_effets[i]
-            else:
-                list_effets_str+=",\n \t -\t"+list_effets[i]
-        msg_request = "Potientielle maladie: \n"+list_causes_effets[position_cause_in_list_causes_effets]["maladie"]+"\n Cette maladie produit généralement d'autres symptômes. Pour nous rassurer que vous souffrez effectivement de cette maladie, nous avons besoin de savoir si vous notez simultanément les symptômes suivants (repondez par oui ou non si c'est le cas)?:\n "+ list_effets_str
-        val = self.send_and_receive(msg_request)
 
-        if (val=='oui'):
-            cause="Votre réponse nous permet conclure que la cause suivante est effectivement une cause de votre problème: \n"+list_causes_effets[position_cause_in_list_causes_effets]["maladie"]+" \n Les solutions à envisager sont les suivantes: \n"+list_causes_effets[position_cause_in_list_causes_effets]["solution"]+". \n Comme, méthodes préventives: "+list_causes_effets[position_cause_in_list_causes_effets]['prevention']
-            data ="{'maladie': "+cause+",}"
-            try:
-                with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-                    send_by_doctor_expert.write(data)
-                    send_by_doctor_expert.flush()
-                    time.sleep(s)
-            except (IOError, PermissionError, FileNotFoundError) as e:
-                print("Erreur lors de l'écriture dans le fichier :", e)
-
-            print("\n")
-            print(cause)
-            print("\n")
-        elif (val=='refresh'):
-            self.reset()
-        else:
-            print("\n")
-            cause="Votre réponse nous fait penser que le problème est ailleurs"
-            data = "{'answer': "+cause+",}"
-            try:
-                with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-                    send_by_doctor_expert.write(data)
-                    send_by_doctor_expert.flush()
-                    time.sleep(s)
-            except (IOError, PermissionError, FileNotFoundError) as e:
-                print("Erreur lors de l'écriture dans le fichier :", e)
-            print("Votre réponse nous fait penser que le problème est ailleurs, Envisageons une autre possibilité")
-            print("\n")
-
-    #for i in range(len(list_causes_effets)):
-     #   for j in range(len(list_causes_effets[i]["symptomes"])):
-     #           @Rule(Effet(effet=(list_causes_effets[i]["symptomes"])[j]))
-     #           def regle1(self):
-     #               self.declare(Cause(cause=list_causes_effets[i]["maladie"]))
-
-     #           @Rule(Effet(cause=(list_causes_effets[i]["maladie"])))
-      #          def regle2(self):
-       #             print(list_causes_effets[i]["solution"])
-
-    #@Rule(Effet(effet='écran noir'))
-    #def regle1(self):
-    #    self.declare(Cause(cause="problème d'alimentation"))
-
-    #@Rule(Cause(cause="problème d'alimentation"))
-    #def regle2(self):
-    #    print("Mettez votre machine en charge")
-            
     @Rule(Launch_find_causes(action="go"))
     def find_causes(self):
-        #nous allons utiliser le chaînage arrière
-        #la liste des causes est notre liste de buts, il faut alors l'extraire est notre liste de buts, cherchons toutes les règles dans lesquelles, elles apparaissent comme conséquences
-        #ici, vu qu'ils n'y a pas de règles effets implique effets, on ne fera alors qu'un seule itération dans le chaînage arrière
-        list_effets_utilisateur = []
-        for i in range(len(self.facts)):
-            if isinstance(self.facts[i],Effet):
-                list_effets_utilisateur.append(self.facts[i]["effet"])
-        #list_effets_utilisateur est bien définie
-                
-        for i in range(len(list_causes_effets)):
-            result_verify_cause=[]#on doit allr checker self.facts pour filtrer 
-            position=i
-            #récupérons tous les effets de list_effets_utilisateur qui sont dans list_causes_effets[i]
-            list_elts_in_i=[]
-            for elt in list_effets_utilisateur:
-                if elt in list_causes_effets[i]["symptomes"]:
-                    list_elts_in_i.append(elt)
-            result_verify_cause = list(set(list_causes_effets[i]["symptomes"])-set(list_elts_in_i))
+        """Recherche des causes potentielles"""
+        user_effects = [fact["effet"] for fact in self.facts.values() if isinstance(fact, Effet)]
 
-            if(list_elts_in_i!=[] and len(list_elts_in_i)!=len(list_causes_effets[i]["symptomes"])):
-                self.declare(Potential_cause(position_cause_in_list_causes_effets=position, list_effets=result_verify_cause))
-            elif len(list_elts_in_i)==len(list_causes_effets[i]["symptomes"]):
-                #on a trouver la cause du problème
-                # Send the message to the specified IP address$
-                cause="Nous pouvons dire que vous souffrez de la maladie suivante: "+list_causes_effets[i]["maladie"]+'('+list_causes_effets[i]['organe']+')'+" et les solutions que vous pouvez envisager sont: "+list_causes_effets[i]["solution"]+". Comme, méthodes préventives: "+list_causes_effets[i]['prevention']
-                data = "{'maladie': "+cause+",}"
-                try:
-                    with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-                        send_by_doctor_expert.write(data)
-                        send_by_doctor_expert.flush()
-                        time.sleep(s)
-                except (IOError, PermissionError, FileNotFoundError) as e:
-                    print("Erreur lors de l'écriture dans le fichier :", e)
+        for idx, item in enumerate(self.list_causes_effets):
+            matching_effects = [e for e in user_effects if e in item.get("symptomes", [])]
+            if matching_effects:
+                self.declare(Potential_cause(position_cause_in_list_causes_effets=idx, list_effets=matching_effects))
 
-                print("\n")
-                print(cause)
-                print("\n")
+    @Rule(Potential_cause(position_cause_in_list_causes_effets=MATCH.idx, list_effets=MATCH.list_effets))
+    def verification(self, idx, list_effets):
+        """Vérifie la présence de symptômes complémentaires"""
+        maladie = self.list_causes_effets[idx]["maladie"]
+        solutions = self.list_causes_effets[idx]["solution"]
+        prevention = self.list_causes_effets[idx]["prevention"]
 
+        effects_list = "\n".join(f" - {effet}" for effet in list_effets)
+        request_msg = f"Potentielle maladie: {maladie}\nPrésentez-vous également les symptômes suivants?\n{effects_list}\n(Oui/Non)"
 
-engine = base_connaissances()
-engine.reset()
-#on met un écouteur de messages ici et quand je reçois le premier message,
-#je penses que je peux faire en sorte que lorsque je reçois le premier message, qui est la description du problème, qu'on ajoute un fait de type FACT(action="launch", pb=contenu_message)
-while True:
-    engine.run()#chercher à faire que lorsqu'il n'y a plus de règle activable, que le moteur d'inférence reste quand même en running
-    #chercher comment déclarer un fait à partir d'un autre fichier
-    engine.reset()
-    data = "{'refresh': 'refresh',}"
-    try:
-        with open("send_by_doctor_expert.txt", "w") as send_by_doctor_expert:
-            send_by_doctor_expert.write(data)
-            send_by_doctor_expert.flush()
-            time.sleep(s)
-    except (IOError, PermissionError, FileNotFoundError) as e:
-        print("Erreur lors de l'écriture dans le fichier :", e)
+        val = self.send_and_wait_response(request_msg)
+
+        if val == 'oui':
+            response = {
+                "maladie": maladie,
+                "solution": solutions,
+                "prevention": prevention
+            }
+            write_file(SEND_FILE, json.dumps(response))
+            print(f"Cause confirmée : {response}")
+        elif val == 'refresh':
+            self.reset()
+        else:
+            info_message = {"answer": "Votre réponse suggère d'envisager d'autres possibilités."}
+            write_file(SEND_FILE, json.dumps(info_message))
+            print("Redirection vers une autre hypothèse.")
