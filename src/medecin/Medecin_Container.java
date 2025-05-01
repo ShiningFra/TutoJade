@@ -14,8 +14,8 @@ import java.awt.event.*;
 
 public class Medecin_Container {
     // Fichiers (peu utilisés ici)
-    public String fichierLecture = "C:/Users/dell/Desktop/.../send_by_doctor_expert.txt";
-    public String fichierEcriture = "C:/Users/dell/Desktop/.../send_by_patient.txt";
+    public String fichierLecture = "D:\\Workspace\\cabinetmedical\\Health Bot avec les fichiers\\send_by_doctor_expert.txt";
+    public String fichierEcriture = "D:\\Workspace\\cabinetmedical\\Health Bot avec les fichiers\\send_by_patient.txt";
 
     private MedecinInterface medecin_interface;
     private Medecin_Agent medecin_agent;

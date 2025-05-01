@@ -22,7 +22,7 @@ public class EcouteurFichierMedecin {
   
     public static void main(String[] args) throws Exception {
         // Obtenez le chemin complet du fichier que vous souhaitez surveiller
-        Path filePath = Paths.get("C:\\Users\\dell\\Desktop\\semestre 2 4gi\\Systeme Expert et systeme multi agent\\SMA\\GESTION_CABINET_MEDICAL_FINAL\\Health Bot avec les fichiers\\send_by_doctor_expert.txt");
+        Path filePath = Paths.get("D:\\Workspace\\cabinetmedical\\Health Bot avec les fichiers\\send_by_doctor_expert.txt");
         
         
         // Créez un objet WatchService
